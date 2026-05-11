@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Samurai Japan Dota 2 Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<h1>Samurai Japan Dota 2 Dashboard</h1>
+
+<div class="nav">
+  <button onclick="showSection('roster-section')">Roster</button>
+  <button onclick="showSection('pool-section')">Player Pool</button>
+  <button onclick="showSection('teams-section')">Teams</button>
+  <button onclick="showSection('results-section')">Results</button>
+  <button onclick="showSection('medals-section')">Medals</button>
+</div>
+
+<section id="roster-section" class="section">
+  <h2>Roster</h2>
+
+  <input type="text" id="search" placeholder="Search player...">
+
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th class="attendance-header">
+  <div class="attendance-header-box">
+
+    <input
+      type="checkbox"
+      id="check-all-attendance"
+      onchange="setAllAttendance(this.checked)"
+    >
+
+    <span>Attendance</span>
+
+  </div>
+</th>
+          <th>Player Name</th>
+          <th>Role</th>
+          <th>Rank</th>
+          <th>Dota ID</th>
+          <th>Discord Username</th>
+          <th>Team</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody id="roster"></tbody>
+    </table>
+  </div>
+</section>
+
+<section id="pool-section" class="section active">
+
+  <div class="draft-layout">
+
+    <div class="pool-side">
+      <h2>Present Player Pool</h2>
+
+      <div class="role-pool-grid">
+
+        <div class="role-pool">
+          <h3>
+            Safelane
+            <img src="icons/safelane.png" class="role-icon">
+          </h3>
+          <div id="carry-pool"></div>
+        </div>
+
+        <div class="role-pool">
+          <h3>
+            Midlane
+            <img src="icons/midlane.png" class="role-icon">
+          </h3>
+          <div id="midlane-pool"></div>
+        </div>
+
+        <div class="role-pool">
+          <h3>
+            Offlane
+            <img src="icons/offlane.png" class="role-icon">
+          </h3>
+          <div id="offlane-pool"></div>
+        </div>
+
+        <div class="role-pool">
+          <h3>
+            Support
+            <img src="icons/soft-support.png" class="role-icon">
+          </h3>
+          <div id="support-pool"></div>
+        </div>
+
+        <div class="role-pool">
+          <h3>
+            Hard Support
+            <img src="icons/hard-support.png" class="role-icon">
+          </h3>
+          <div id="hard-support-pool"></div>
+        </div>
+
+        <div class="role-pool">
+          <h3>
+            Any Role
+            <img src="icons/safelane.png" class="role-icon">
+            <img src="icons/midlane.png" class="role-icon">
+            <img src="icons/offlane.png" class="role-icon">
+            <img src="icons/soft-support.png" class="role-icon">
+            <img src="icons/hard-support.png" class="role-icon">
+          </h3>
+          <div id="all-roles-pool"></div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="draft-side">
+      <h2>Captains Draft Arena</h2>
+
+      <div class="captain-box"
+           ondragover="allowDrop(event)"
+           ondrop="dropCaptain(event)">
+
+        <h3>Captain Shuffle Box</h3>
+        <div id="captain-list"></div>
+
+      </div>
+
+      <div class="draft-settings">
+        <label for="draft-mode">Draft Mode:</label>
+
+        <select id="draft-mode">
+          <option value="snake">Snake Draft</option>
+          <option value="alternating">Alternating Draft</option>
+        </select>
+      </div>
+
+      <button id="shuffle-btn" onclick="shuffleCaptains()">
+        Shuffle Captains
+      </button>
+
+      <div class="draft-controls">
+
+        <button onclick="undoLastPick()" class="undo-btn">
+          Undo Last Pick
+        </button>
+
+        <button onclick="resetDraft()" class="reset-btn">
+          Reset Draft
+        </button>
+
+        <button id="randomize-btn" onclick="randomizeLastPlayers()">
+          Randomize Remaining
+        </button>
+
+        <button onclick="saveTeamsToSheet()" class="save-btn">
+          Save Teams
+        </button>
+
+      </div>
+
+      <div id="draft-message" class="draft-message">
+        Drag captains here first.
+      </div>
+
+      <div id="draft-teams"></div>
+    </div>
+
+  </div>
+
+</section>
+
+<section id="teams-section" class="section">
+  <h2>Teams</h2>
+
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th>Team</th>
+          <th>Player Name</th>
+          <th>Role</th>
+          <th>Rank</th>
+          <th>Captain</th>
+        </tr>
+      </thead>
+      <tbody id="teams"></tbody>
+    </table>
+  </div>
+</section>
+
+<section id="results-section" class="section">
+  <h2>Results</h2>
+
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th>Match</th>
+          <th>Team 1</th>
+          <th>Team 2</th>
+          <th>Winner</th>
+          <th>Score</th>
+        </tr>
+      </thead>
+      <tbody id="results"></tbody>
+    </table>
+  </div>
+</section>
+
+<section id="medals-section" class="section">
+  <h2>Medals</h2>
+
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th>Player</th>
+          <th>Gold</th>
+          <th>Silver</th>
+          <th>Bronze</th>
+          <th>Total</th>
+        </tr>
+      </thead>
+      <tbody id="medals"></tbody>
+    </table>
+  </div>
+</section>
+
+<div id="history-widget" class="history-widget collapsed">
+  <button id="history-toggle" onclick="togglePickHistory()">
+    Pick Log
+  </button>
+
+  <div id="history-panel" class="history-panel">
+    <div class="history-header">
+      <span>Draft Pick History</span>
+      <button onclick="togglePickHistory()">X</button>
+    </div>
+
+    <div id="pick-history"></div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+<script src="teams.js"></script>
+<script src="results.js"></script>
+<script src="medals.js"></script>
+
+</body>
+</html>

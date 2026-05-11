@@ -1,0 +1,1650 @@
+body {
+    background: #0f0f0f;
+    color: white;
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    margin: 0;
+}
+
+h1 {
+    text-align: center;
+    color: #ffcc00;
+    margin-bottom: 20px;
+}
+
+h2 {
+    text-align: center;
+    color: white;
+}
+
+.nav {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.nav button,
+#shuffle-btn {
+    background: #cc0000;
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    margin: 5px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.nav button:hover,
+#shuffle-btn:hover,
+.remove-btn:hover {
+    background: #ff0000;
+}
+
+.section {
+    display: none;
+}
+
+.section.active {
+    display: block;
+}
+
+.draft-layout {
+    display: flex;
+    gap: 20px;
+    width: 96%;
+    margin: auto;
+    align-items: flex-start;
+}
+
+.pool-side {
+    width: 60%;
+}
+
+.draft-side {
+    width: 40%;
+    position: sticky;
+    top: 20px;
+}
+
+.role-pool-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+.role-pool {
+    background: #1a1a1a;
+    border: 1px solid #333;
+    border-radius: 10px;
+    padding: 10px;
+    min-height: 180px;
+    overflow: hidden;
+}
+
+.role-pool h3,
+.captain-box h3,
+.team-card h3 {
+    text-align: center;
+    color: #ffcc00;
+    margin: 0 0 10px 0;
+}
+
+.player-item {
+    display: inline-flex;
+    justify-content: space-between;
+    align-items: center;
+    width: calc(50% - 8px);
+    box-sizing: border-box;
+    padding: 6px 10px;
+    margin: 3px;
+    border-radius: 4px;
+    background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(255,255,255,0.04);
+    cursor: grab;
+    font-size: 12px;
+    min-height: 24px;
+}
+
+.player-item:hover {
+    background: #2a2a2a;
+}
+
+.captain-box {
+    background: #1a1a1a;
+    border: 1px solid #333;
+    border-radius: 10px;
+    padding: 15px;
+    min-height: 150px;
+    margin-bottom: 15px;
+}
+
+#captain-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+}
+
+.captain-chip {
+    display: grid;
+    grid-template-columns: 1fr auto 28px;
+    align-items: center;
+    background: #332200;
+    color: #ffcc00;
+    padding: 6px;
+    border-radius: 6px;
+    font-weight: bold;
+    gap: 8px;
+    font-size: 13px;
+}
+
+.remove-btn {
+    background: #cc0000;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    height: 24px;
+    width: 24px;
+    font-weight: bold;
+}
+
+#shuffle-btn {
+    width: 100%;
+    margin-top: 10px;
+    padding: 8px;
+    font-size: 13px;
+}
+
+.draft-message {
+    text-align: center;
+    color: #ccc;
+    margin: 15px 0;
+    font-weight: bold;
+}
+
+.team-card {
+    background: #1a1a1a;
+    border: 1px solid #333;
+    border-radius: 8px;
+    padding: 8px;
+    margin-bottom: 8px;
+}
+
+.team-player {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    padding: 8px;
+    border-bottom: 1px solid #333;
+    text-align: center;
+}
+
+input {
+    display: block;
+    width: 90%;
+    max-width: 1200px;
+    padding: 12px;
+    margin: 0 auto 20px auto;
+    border-radius: 8px;
+    border: none;
+    background: #1e1e1e;
+    color: white;
+}
+
+.table-container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #1a1a1a;
+    text-align: center;
+}
+
+th {
+    background: #cc0000;
+    color: white;
+    padding: 12px;
+}
+
+td {
+    padding: 8px;
+    border-bottom: 1px solid #333;
+    text-align: center;
+}
+
+.team-card {
+    background: #1a1a1a;
+    border: 1px solid #333;
+    border-radius: 10px;
+    padding: 12px;
+    margin-bottom: 12px;
+    min-height: 160px;
+}
+
+.team-player {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    padding: 6px;
+    border-bottom: 1px solid #333;
+    text-align: center;
+    font-size: 13px;
+}
+
+#draft-teams {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+}
+
+.team-card {
+    aspect-ratio: 1 / 1;
+    min-height: unset;
+    margin-bottom: 0;
+    overflow: hidden;
+}
+
+.team-player {
+    font-size: 12px;
+    padding: 5px;
+}
+
+.main-layout {
+    grid-template-columns: 58% 42%;
+    gap: 16px;
+}
+
+.role-box {
+    min-height: 180px;
+    padding: 10px;
+}
+
+.player-item {
+    font-size: 12px;
+    padding: 4px 6px;
+}
+
+.team-card {
+    aspect-ratio: 1 / 1;
+    padding: 10px;
+}
+
+.team-title {
+    font-size: 30px;
+    font-weight: 800;
+    margin-bottom: 14px;
+}
+
+.team-player {
+    font-size: 15px;
+    padding: 8px;
+    font-weight: 600;
+}
+
+#draft-teams {
+    gap: 14px;
+}
+
+.pool-side {
+    width: 40%;
+}
+
+.draft-side {
+    width: 60%;
+}
+
+.player-item {
+    width: calc(50% - 8px);
+    padding: 5px 7px;
+    font-size: 11px;
+    gap: 4px;
+}
+
+.role-pool {
+    min-height: 160px;
+    padding: 8px;
+}
+
+#draft-teams {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+}
+
+.team-card {
+    aspect-ratio: 1 / 1;
+}
+
+.team-player {
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.main-layout {
+    grid-template-columns: 38% 62%;
+    gap: 16px;
+}
+
+/* PLAYER POOL */
+
+.player-item {
+    font-size: 13px;
+    padding: 4px 6px;
+    gap: 2px;
+}
+
+.player-name {
+    font-weight: 600;
+}
+
+.player-rank {
+    opacity: 0.9;
+    font-size: 12px;
+}
+
+.role-pool {
+    min-height: 150px;
+    padding: 8px;
+}
+
+/* CAPTAIN SHUFFLE BOX */
+
+.captain-list {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 6px;
+}
+
+.captain-chip {
+    padding: 6px 8px;
+    font-size: 12px;
+}
+
+/* TEAM BOXES */
+
+#draft-teams {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
+
+.team-card {
+    aspect-ratio: 1 / 1;
+    padding: 8px;
+    min-height: unset;
+}
+
+.team-title {
+    font-size: 16px;
+    margin-bottom: 8px;
+}
+
+.team-player {
+    font-size: 13px;
+    padding: 5px;
+    font-weight: 600;
+}
+
+#captain-list {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 6px;
+}
+
+.captain-chip {
+    display: grid;
+    grid-template-columns: 1fr auto 24px;
+    align-items: center;
+    padding: 6px;
+    gap: 6px;
+    font-size: 12px;
+}
+
+.remove-btn {
+    width: 22px;
+    height: 22px;
+}
+
+.team-card {
+    min-height: 150px;
+    aspect-ratio: unset;
+}
+
+.captain-chip {
+    padding: 4px 6px;
+    font-size: 11px;
+}
+
+.team-player {
+    padding: 4px;
+    font-size: 12px;
+}
+
+.role-pool {
+    max-height: 170px;
+    overflow-y: auto;
+}
+
+#draft-teams {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+}
+
+.captain-chip {
+    font-size: 13px;
+    padding: 6px 8px;
+}
+
+.captain-chip span {
+    font-size: 13px;
+}
+
+.remove-btn {
+    font-size: 12px;
+}
+
+.team-card {
+    min-height: 140px;
+    padding: 12px;
+}
+
+.team-player {
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.role-pool {
+    min-height: 170px;
+}
+
+.draft-message {
+    margin: 8px 0 10px;
+    font-size: 14px;
+}
+
+.role-pool h3 {
+    font-size: 16px;
+}
+
+.draft-layout {
+    gap: 16px;
+}
+
+.role-pool-grid {
+    gap: 10px;
+}
+
+#draft-teams {
+    gap: 10px;
+}
+
+.team-card {
+    background: #161616;
+    border: 1px solid #2d2d2d;
+    border-radius: 12px;
+    padding: 12px;
+    min-height: 210px;
+    transition: 0.2s ease;
+}
+
+.team-card .player-row,
+.team-player {
+    font-size: 15px;
+    font-weight: 700;
+    padding: 8px 0;
+}
+
+#draft-teams {
+    gap: 12px;
+}
+
+#randomize-btn {
+    background: #cc0000;
+    color: white;
+    border: none;
+    padding: 8px 14px;
+    margin-top: 8px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.captain-row {
+    color: #ffcc00;
+    font-weight: bold;
+}
+
+.player-item {
+    user-select: none;
+}
+
+const SHEET_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTWiatOyiL0qN6cWPjyyLvUAPwx3H3RJUvd05bloi4GLtRE8wSrg7fA91wchZWjm1GLCrBaJ5USsaDL/pub?gid=380076190&single=true&output=csv";
+
+const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxB4zau23c2v_s5JtKGKr8sCqmiuc4fYo80SS6MJUPA85aQg0l4paw-kctxUOxfKQ9H/exec";
+
+let players = [];
+let selectedCaptains = [];
+let shuffledCaptains = [];
+let draftedPlayers = [];
+let draftPickIndex = 0;
+let draftComplete = false;
+
+function showSection(sectionId) {
+    document.querySelectorAll(".section").forEach(section => {
+        section.classList.remove("active");
+    });
+
+    document.getElementById(sectionId).classList.add("active");
+}
+
+async function loadRoster() {
+    const response = await fetch(SHEET_URL + "&cache=" + Date.now());
+    const text = await response.text();
+
+    const rows = text.trim().split("\n").slice(1);
+
+    players = rows.map((row, index) => {
+        const cols = row.split(",");
+
+        return {
+            rowNumber: index + 2,
+            attendance: (cols[0] || "").trim().toUpperCase() === "TRUE",
+            name: (cols[1] || "").trim(),
+            role: (cols[2] || "").trim(),
+            rank: (cols[3] || "").trim(),
+            dotaId: (cols[4] || "").trim(),
+            discord: (cols[5] || "").trim(),
+            team: (cols[6] || "").trim(),
+            status: (cols[7] || "").trim()
+        };
+    }).filter(player => player.name !== "");
+
+    renderRoster();
+    renderPools();
+    renderCaptains();
+    renderDraftTeams();
+}
+
+function renderRoster() {
+    const roster = document.getElementById("roster");
+    roster.innerHTML = "";
+
+    players.forEach(player => {
+        const tr = document.createElement("tr");
+
+        tr.innerHTML = `
+            <td>
+                <input type="checkbox"
+                    ${player.attendance ? "checked" : ""}
+                    onchange="updateAttendance(${player.rowNumber}, this.checked)">
+            </td>
+            <td>${player.name}</td>
+            <td>${player.role}</td>
+            <td>${player.rank}</td>
+            <td>${player.dotaId}</td>
+            <td>${player.discord}</td>
+            <td>${player.team}</td>
+            <td>${player.status}</td>
+        `;
+
+        roster.appendChild(tr);
+    });
+}
+
+function renderPools() {
+    const ids = [
+        "Safelane-pool",
+        "midlane-pool",
+        "offlane-pool",
+        "support-pool",
+        "hard-support-pool",
+        "all-roles-pool"
+    ];
+
+    ids.forEach(id => {
+        document.getElementById(id).innerHTML = "";
+    });
+
+    players
+        .filter(player => player.attendance)
+        .filter(player => !selectedCaptains.some(captain => captain.name === player.name))
+        .filter(player => !draftedPlayers.some(drafted => drafted.name === player.name))
+        .forEach(player => {
+
+            const item = document.createElement("div");
+
+            item.className = "player-item";
+            item.draggable = true;
+
+            item.dataset.name = player.name;
+            item.dataset.rank = player.rank;
+            item.dataset.role = player.role;
+
+            item.ondragstart = dragPlayer;
+
+            item.onclick = function () {
+                if (shuffledCaptains.length > 0 && !draftComplete) {
+                    draftPlayer(player);
+                }
+            };
+
+            item.innerHTML = `
+                <span>${player.name}</span>
+                <span>${player.rank}</span>
+            `;
+
+            const role = player.role.toLowerCase();
+
+            if (role.includes("Safelane")) {
+                document.getElementById("Safelane-pool").appendChild(item);
+            }
+            else if (role.includes("mid")) {
+                document.getElementById("midlane-pool").appendChild(item);
+            }
+            else if (role.includes("offlane")) {
+                document.getElementById("offlane-pool").appendChild(item);
+            }
+            else if (role.includes("hard support") || role.includes("hardsupport")) {
+                document.getElementById("hard-support-pool").appendChild(item);
+            }
+            else if (role.includes("support")) {
+                document.getElementById("support-pool").appendChild(item);
+            }
+            else {
+                document.getElementById("all-roles-pool").appendChild(item);
+            }
+        });
+}
+
+function dragPlayer(event) {
+    const data = {
+        name: event.target.dataset.name,
+        rank: event.target.dataset.rank,
+        role: event.target.dataset.role
+    };
+
+    event.dataTransfer.setData("application/json", JSON.stringify(data));
+}
+
+function allowDrop(event) {
+    event.preventDefault();
+}
+
+function dropCaptain(event) {
+
+    event.preventDefault();
+
+    if (shuffledCaptains.length > 0) return;
+
+    const player = JSON.parse(
+        event.dataTransfer.getData("application/json")
+    );
+
+    const exists = selectedCaptains.some(
+        captain => captain.name === player.name
+    );
+
+    if (exists) return;
+
+    selectedCaptains.push(player);
+
+    shuffledCaptains = [];
+    draftedPlayers = [];
+    draftPickIndex = 0;
+    draftComplete = false;
+
+    renderCaptains();
+    renderPools();
+    renderDraftTeams();
+}
+
+function renderCaptains() {
+
+    const captainList = document.getElementById("captain-list");
+    const draftMessage = document.getElementById("draft-message");
+
+    captainList.innerHTML = "";
+
+    if (selectedCaptains.length === 0) {
+
+        draftMessage.innerHTML =
+            "Drag captains here first.";
+    }
+    else if (shuffledCaptains.length === 0) {
+
+        draftMessage.innerHTML = `
+            ${selectedCaptains.length} captain(s) selected.
+        `;
+    }
+
+    selectedCaptains.forEach((captain, index) => {
+
+        const chip = document.createElement("div");
+
+        chip.className = "captain-chip";
+
+        chip.innerHTML = `
+            <span>${captain.name}</span>
+            <span>${captain.rank}</span>
+            <button class="remove-btn"
+                onclick="removeCaptain(${index})">
+                X
+            </button>
+        `;
+
+        captainList.appendChild(chip);
+    });
+}
+
+function removeCaptain(index) {
+
+    if (shuffledCaptains.length > 0) return;
+
+    selectedCaptains.splice(index, 1);
+
+    shuffledCaptains = [];
+    draftedPlayers = [];
+    draftPickIndex = 0;
+    draftComplete = false;
+
+    renderCaptains();
+    renderPools();
+    renderDraftTeams();
+}
+
+function shuffleCaptains() {
+
+    if (selectedCaptains.length === 0) return;
+
+    shuffledCaptains =
+        [...selectedCaptains].sort(() => Math.random() - 0.5);
+
+    draftedPlayers = [];
+    draftPickIndex = 0;
+    draftComplete = false;
+
+    renderDraftStatus();
+    renderPools();
+    renderDraftTeams();
+}
+
+function getSnakeTeamIndex(pickIndex, teamCount) {
+
+    const round = Math.floor(pickIndex / teamCount);
+    const position = pickIndex % teamCount;
+
+    return round % 2 === 0
+        ? position
+        : teamCount - 1 - position;
+}
+
+function getTeamSize(teamIndex) {
+
+    const captainCount =
+        shuffledCaptains[teamIndex] ? 1 : 0;
+
+    const memberCount =
+        draftedPlayers.filter(
+            player => player.teamIndex === teamIndex
+        ).length;
+
+    return captainCount + memberCount;
+}
+
+function getRemainingPlayers() {
+
+    return players
+        .filter(player => player.attendance)
+        .filter(player =>
+            !selectedCaptains.some(
+                captain => captain.name === player.name
+            )
+        )
+        .filter(player =>
+            !draftedPlayers.some(
+                drafted => drafted.name === player.name
+            )
+        );
+}
+
+function allTeamsHaveFourPlayers() {
+
+    return shuffledCaptains.every(
+        (captain, index) =>
+            getTeamSize(index) >= 4
+    );
+}
+
+function getNextValidTeamIndex() {
+
+    const teamCount = shuffledCaptains.length;
+
+    let safety = 0;
+
+    while (safety < teamCount * 5) {
+
+        const teamIndex =
+            getSnakeTeamIndex(draftPickIndex, teamCount);
+
+        if (getTeamSize(teamIndex) < 4) {
+            return teamIndex;
+        }
+
+        draftPickIndex++;
+        safety++;
+    }
+
+    return null;
+}
+
+function draftPlayer(player) {
+
+    if (shuffledCaptains.length === 0) return;
+
+    if (draftComplete) return;
+
+    if (allTeamsHaveFourPlayers()) {
+
+        renderDraftStatus();
+        return;
+    }
+
+    const teamIndex = getNextValidTeamIndex();
+
+    if (teamIndex === null) {
+
+        renderDraftStatus();
+        return;
+    }
+
+    draftedPlayers.push({
+        ...player,
+        teamIndex: teamIndex,
+        draftOrder: draftedPlayers.length + 1
+    });
+
+    draftPickIndex++;
+
+    renderDraftStatus();
+    renderPools();
+    renderDraftTeams();
+}
+
+function randomizeLastPlayers() {
+
+    if (draftComplete) return;
+
+    const remaining = getRemainingPlayers();
+
+    const incompleteTeams = shuffledCaptains
+        .map((captain, index) => ({
+            index: index,
+            size: getTeamSize(index)
+        }))
+        .filter(team => team.size < 5);
+
+    const shuffledRemaining =
+        [...remaining].sort(() => Math.random() - 0.5);
+
+    let playerIndex = 0;
+
+    incompleteTeams.forEach(team => {
+
+        while (
+            getTeamSize(team.index) < 5 &&
+            playerIndex < shuffledRemaining.length
+        ) {
+
+            draftedPlayers.push({
+                ...shuffledRemaining[playerIndex],
+                teamIndex: team.index,
+                draftOrder: draftedPlayers.length + 1
+            });
+
+            playerIndex++;
+        }
+    });
+
+    draftComplete = true;
+
+    renderDraftStatus();
+    renderPools();
+    renderDraftTeams();
+
+    document.getElementById("draft-message").innerHTML =
+        "Draft complete.";
+}
+
+function renderDraftStatus() {
+
+    const draftMessage =
+        document.getElementById("draft-message");
+
+    if (shuffledCaptains.length === 0) return;
+
+    const remaining = getRemainingPlayers();
+
+    if (draftComplete) {
+
+        draftMessage.innerHTML = `
+            Draft complete.
+        `;
+
+        return;
+    }
+
+    if (allTeamsHaveFourPlayers()) {
+
+        draftMessage.innerHTML = `
+            ${remaining.length} player(s) remaining.
+            <br><br>
+            <button id="randomize-btn"
+                onclick="randomizeLastPlayers()">
+                Randomize Remaining Players
+            </button>
+        `;
+
+        return;
+    }
+
+    const teamIndex = getNextValidTeamIndex();
+
+    if (teamIndex === null) {
+
+        draftMessage.innerHTML =
+            "Waiting for random assignment.";
+
+        return;
+    }
+
+    draftMessage.innerHTML = `
+        NOW PICKING:
+        <br><br>
+        TEAM ${teamIndex + 1}
+    `;
+}
+
+function renderDraftTeams() {
+
+    const draftTeams =
+        document.getElementById("draft-teams");
+
+    draftTeams.innerHTML = "";
+
+    if (shuffledCaptains.length === 0) return;
+
+    shuffledCaptains.forEach((captain, index) => {
+
+        const teamCard = document.createElement("div");
+
+        teamCard.className = "team-card";
+
+        const teamMembers =
+            draftedPlayers.filter(
+                player => player.teamIndex === index
+            );
+
+        let membersHtml = `
+            <div class="team-player captain-row">
+                <span>${captain.name}</span>
+                <span>${captain.rank}</span>
+                <span>Captain</span>
+            </div>
+        `;
+
+        teamMembers.forEach(member => {
+
+            membersHtml += `
+                <div class="team-player">
+                    <span>${member.name}</span>
+                    <span>${member.rank}</span>
+                    <span>${member.role}</span>
+                </div>
+            `;
+        });
+
+        teamCard.innerHTML = `
+            <h3>Team ${index + 1}</h3>
+            ${membersHtml}
+        `;
+
+        draftTeams.appendChild(teamCard);
+    });
+}
+
+function undoLastPick() {
+
+    if (draftedPlayers.length === 0) return;
+
+    draftedPlayers.pop();
+
+    draftComplete = false;
+
+    renderDraftStatus();
+    renderPools();
+    renderDraftTeams();
+}
+
+function resetDraft() {
+
+    shuffledCaptains = [];
+    draftedPlayers = [];
+    draftPickIndex = 0;
+    draftComplete = false;
+
+    renderCaptains();
+    renderPools();
+    renderDraftTeams();
+
+    document.getElementById("draft-message").innerHTML =
+        "Draft reset.";
+}
+
+async function updateAttendance(row, value) {
+
+    const url =
+        `${APPS_SCRIPT_URL}?row=${row}&field=attendance&value=${value}`;
+
+    await fetch(url, {
+        method: "GET",
+        mode: "no-cors"
+    });
+
+    setTimeout(loadRoster, 1000);
+}
+
+document.getElementById("search")
+.addEventListener("input", function () {
+
+    const value = this.value.toLowerCase();
+
+    const rows =
+        document.querySelectorAll("#roster tr");
+
+    rows.forEach(row => {
+
+        row.style.display =
+            row.innerText.toLowerCase().includes(value)
+                ? ""
+                : "none";
+    });
+});
+
+loadRoster();
+
+.player-item {
+    transition: 0.2s ease;
+    cursor: pointer;
+}
+
+.player-item:hover {
+    transform: scale(1.03);
+    border: 1px solid gold;
+    box-shadow: 0 0 10px rgba(255,215,0,0.4);
+}
+
+.team-player {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr 1fr;
+    gap: 6px;
+    padding: 8px 0;
+    font-size: 15px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.team-player span:last-child {
+    font-size: 12px;
+    opacity: 0.8;
+}
+
+.captain-row {
+    color: gold;
+    font-weight: bold;
+}
+
+.draft-controls {
+    display: flex;
+    gap: 10px;
+    margin-top: 12px;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+}
+
+.draft-controls button {
+    border: none;
+    padding: 10px 18px;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    color: white;
+}
+
+.undo-btn {
+    background: #666;
+}
+
+.reset-btn {
+    background: #b00000;
+}
+
+.save-btn {
+    background: #1e8e3e;
+}
+
+.draft-controls {
+    display: flex;
+    gap: 10px;
+    margin-top: 12px;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+}
+
+.draft-controls button,
+.save-btn {
+    border: none;
+    padding: 10px 18px;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    color: white;
+}
+
+.undo-btn {
+    background: #666;
+}
+
+.reset-btn {
+    background: #b00000;
+}
+
+.save-btn {
+    background: #1e8e3e !important;
+}
+
+.history-widget {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    z-index: 9999;
+}
+
+#history-toggle {
+    background: #cc0000;
+    color: white;
+    border: none;
+    padding: 12px 18px;
+    border-radius: 999px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.history-panel {
+    display: none;
+    width: 340px;
+    max-height: 420px;
+    overflow-y: auto;
+    background: #111;
+    border: 1px solid #444;
+    border-radius: 12px;
+    box-shadow: 0 0 18px rgba(0,0,0,0.7);
+}
+
+.history-widget.open #history-toggle {
+    display: none;
+}
+
+.history-widget.open .history-panel {
+    display: block;
+}
+
+.history-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #1a1a1a;
+    color: #ffcc00;
+    padding: 10px 12px;
+    font-weight: bold;
+    border-bottom: 1px solid #333;
+}
+
+.history-header button {
+    background: #cc0000;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.pick-history-item {
+    padding: 8px 10px;
+    border-bottom: 1px solid #2a2a2a;
+    font-size: 13px;
+    color: white;
+}
+
+.pick-history-team {
+    color: #ffcc00;
+    font-weight: bold;
+}
+
+.active-team {
+    border: 2px solid #ffcc00 !important;
+    box-shadow: 0 0 18px rgba(255, 204, 0, 0.6);
+    transform: scale(1.02);
+    transition: 0.2s ease;
+}
+
+.current-pick-team {
+    color: #ffcc00;
+    font-size: 20px;
+    font-weight: 900;
+}
+
+#draft-phase-box{
+    text-align:center;
+    margin:14px 0 18px;
+}
+
+#draft-round{
+    color:#ffcc00;
+    font-size:22px;
+    font-weight:900;
+    margin-bottom:4px;
+}
+
+#draft-direction{
+    color:#ff5555;
+    font-size:14px;
+    font-weight:bold;
+    margin-bottom:6px;
+    letter-spacing:1px;
+}
+
+.captain-box {
+    min-height: 70px !important;
+    padding: 10px !important;
+}
+
+.captain-box h3 {
+    font-size: 15px !important;
+    margin-bottom: 6px !important;
+}
+
+.captain-chip {
+    padding: 4px 6px !important;
+    font-size: 11px !important;
+}
+
+#shuffle-btn {
+    padding: 8px !important;
+    margin-top: 8px !important;
+}
+
+.draft-controls {
+    margin-top: 8px !important;
+    margin-bottom: 8px !important;
+}
+
+.draft-controls button {
+    padding: 8px 14px !important;
+    font-size: 12px !important;
+}
+
+#draft-phase-box {
+    margin: 6px 0 10px !important;
+    padding: 6px !important;
+    background: #161616;
+    border: 1px solid #333;
+    border-radius: 8px;
+}
+
+#draft-round {
+    font-size: 16px !important;
+    margin-bottom: 2px !important;
+}
+
+#draft-direction {
+    font-size: 11px !important;
+    margin-bottom: 2px !important;
+}
+
+.draft-message {
+    font-size: 12px !important;
+    margin: 2px 0 !important;
+}
+
+.current-pick-team {
+    font-size: 18px !important;
+}
+
+.team-card {
+    min-height: 250px !important;
+    padding: 14px !important;
+}
+
+.team-card h3 {
+    font-size: 22px !important;
+    margin-bottom: 12px !important;
+}
+
+.team-player {
+    font-size: 16px !important;
+    padding: 8px 0 !important;
+}
+
+.active-team {
+    border: 3px solid #ffcc00 !important;
+    box-shadow: 0 0 26px rgba(255, 204, 0, 0.9) !important;
+}
+
+.drafting-started .captain-box,
+.drafting-started #shuffle-btn {
+    display: none !important;
+}
+
+.player-item {
+    font-size: 14px !important;
+}
+
+.player-item span {
+    font-size: 14px !important;
+    font-weight: 600;
+}
+
+.draft-settings {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin: 8px 0 10px;
+    color: white;
+    font-weight: bold;
+}
+
+#draft-mode {
+    background: #1a1a1a;
+    color: white;
+    border: 1px solid #555;
+    padding: 8px 10px;
+    border-radius: 6px;
+}
+
+.drafting-started .captain-box,
+.drafting-started #shuffle-btn,
+.drafting-started .draft-settings {
+    display: none !important;
+}
+
+.draft-controls button,
+#randomize-btn {
+    min-width: 130px !important;
+    height: 42px !important;
+    padding: 0 14px !important;
+    border-radius: 8px !important;
+    border: none !important;
+    color: white !important;
+    font-size: 13px !important;
+    font-weight: 800 !important;
+    cursor: pointer !important;
+}
+
+.undo-btn {
+    background: #555 !important;
+}
+
+.reset-btn {
+    background: #b00000 !important;
+}
+
+#randomize-btn {
+    background: #d97706 !important;
+}
+
+.save-btn {
+    background: #1e8e3e !important;
+}
+
+#randomize-btn {
+    min-width: 130px !important;
+    height: 42px !important;
+    padding: 0 14px !important;
+
+    background: #d97706 !important;
+
+    color: white !important;
+    border: none !important;
+    border-radius: 8px !important;
+
+    font-size: 13px !important;
+    font-weight: 800 !important;
+
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    white-space: nowrap !important;
+    line-height: 1 !important;
+}
+
+.draft-controls {
+    display: grid !important;
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 10px !important;
+    width: 100% !important;
+}
+
+.draft-controls button,
+.draft-controls #randomize-btn {
+    width: 100% !important;
+    min-width: 0 !important;
+    height: 42px !important;
+    padding: 0 10px !important;
+    border-radius: 8px !important;
+    border: none !important;
+    color: white !important;
+    font-size: 13px !important;
+    font-weight: 800 !important;
+    cursor: pointer !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    white-space: nowrap !important;
+}
+
+.undo-btn {
+    background: #555 !important;
+}
+
+.reset-btn {
+    background: #b00000 !important;
+}
+
+#randomize-btn {
+    background: #d97706 !important;
+}
+
+.save-btn {
+    background: #1e8e3e !important;
+}
+
+.draft-controls {
+    display: flex !important;
+    align-items: stretch !important;
+    gap: 10px !important;
+    width: 100% !important;
+}
+
+.draft-controls button {
+    flex: 1 !important;
+    height: 44px !important;
+    margin: 0 !important;
+    padding: 0 10px !important;
+    box-sizing: border-box !important;
+    line-height: 1 !important;
+}
+
+.role-icon {
+    width: 18px;
+    height: 18px;
+    vertical-align: middle;
+    margin-left: 5px;
+}
+
+.team-role-icon {
+    width: 20px;
+    height: 20px;
+    min-width: 20px;
+    min-height: 20px;
+    max-width: 20px;
+    max-height: 20px;
+    object-fit: contain;
+    vertical-align: middle;
+}
+
+.multi-role-icons {
+    display: inline-flex;
+    gap: 3px;
+    align-items: center;
+}
+
+.captain-row span:last-child {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.team-player span:last-child {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+}
+
+#roster-section {
+    max-width: 1320px;
+    margin: 0 auto;
+}
+
+#roster-section h2 {
+    color: #ffcc00;
+    font-size: 30px;
+    letter-spacing: 1px;
+}
+
+#search {
+    width: 100%;
+    max-width: 900px;
+    display: block;
+    margin: 0 auto 22px;
+    padding: 15px 18px;
+    border-radius: 10px;
+    border: 1px solid #333;
+    background: #1b1b1b;
+    color: white;
+    font-size: 15px;
+    outline: none;
+}
+
+#search:focus {
+    border-color: #ffcc00;
+    box-shadow: 0 0 12px rgba(255, 204, 0, 0.35);
+}
+
+.table-container {
+    border: 1px solid #333;
+    border-radius: 14px;
+    overflow: hidden;
+    background: #151515;
+    box-shadow: 0 0 22px rgba(0,0,0,0.45);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+thead th {
+    background: linear-gradient(180deg, #e00000, #a80000);
+    color: white;
+    padding: 16px 12px;
+    font-size: 15px;
+    text-transform: uppercase;
+    letter-spacing: .5px;
+}
+
+tbody td {
+    padding: 14px 12px;
+    border-bottom: 1px solid #2b2b2b;
+    font-size: 15px;
+}
+
+tbody tr:nth-child(even) {
+    background: #1a1a1a;
+}
+
+tbody tr:nth-child(odd) {
+    background: #141414;
+}
+
+tbody tr:hover {
+    background: rgba(255, 204, 0, 0.08);
+}
+
+tbody td:nth-child(2) {
+    color: #ffcc00;
+    font-weight: 800;
+}
+
+tbody td:nth-child(3),
+tbody td:nth-child(4) {
+    font-weight: 700;
+}
+
+input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: #ffcc00;
+    cursor: pointer;
+}
+
+.attendance-actions {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin: 0 0 18px;
+}
+
+.attendance-actions button {
+    background: #c9251b;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 18px;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+.attendance-actions button:hover {
+    background: #e03125;
+}
+
+.attendance-header {
+    text-align: center;
+}
+
+.attendance-header-box {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.attendance-header-box input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+    margin: 0;
+}
